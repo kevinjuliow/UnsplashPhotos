@@ -19,7 +19,7 @@ const Home = () => {
   //  fetchDefaultPhotos()
   } , [])
   return (
-    <div className = 'home-page'>
+    <div className = 'pages home'>
       <h1 style={{marginLeft :'50px'}}>Unsplash</h1>
       <p style={{color: 'gray', marginLeft : '50px'}}>All Photos here are from Unsplash</p>
       

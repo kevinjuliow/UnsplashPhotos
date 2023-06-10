@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import HomeImages from '../Home/HomeImages'
 import Masonry ,{ResponsiveMasonry} from 'react-responsive-masonry'
 import './Random.css'
+import { SearchContext } from '../../Context/SearchContext'
 
 const Random = () => {
   const [randomPhotos , setRandomPhotos] = useState([])
+  const {clickedVar } = useContext(SearchContext);
+  const {randomClicked} = clickedVar
   const fetchRandom = async() =>{
     try {
       const response = await axios.get('https://api.unsplash.com/photos/random' , {
         params : {
-          client_id : 'cbcE4BHkUayOSBaspLsLOTte_DGYVyanMXS5nXF2NfM' , 
-          count : 10
-        }
+          count : 2  ,
+          client_id : 'cbcE4BHkUayOSBaspLsLOTte_DGYVyanMXS5nXF2NfM' 
+              }
       })
       setRandomPhotos(response.data)
     }catch(error) {
@@ -21,14 +24,17 @@ const Random = () => {
     
     
   }
-
   useEffect(()=>{
-  //  fetchRandom()
-  })
+    if (randomClicked) {
+      fetchRandom()
+    }
+  } , )
+  
+
   return (
-    <div className='random-page'>
-      asd
-        <>
+    <div className='pages random'>
+      
+        <div className='grid-container'>
         <ResponsiveMasonry
                 columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
             >
@@ -41,7 +47,7 @@ const Random = () => {
                 </Masonry>
             </ResponsiveMasonry>
         
-        </>
+        </div>
     </div>
   )
 }

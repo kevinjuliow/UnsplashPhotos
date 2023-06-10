@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navigations.css'
+import { SearchContext } from '../Context/SearchContext'
 
 const SideNav = () => {
+  const { clickedVar } = useContext(SearchContext);
+  const {homeClicked , setHomeClicked , usersClicked , setUserClicked , collectionsClicked , setCollectionsClicked , 
+    randomClicked , setRandomClicked , clickedNav} = clickedVar
   const [click , setClick] = useState(true);
   const styles = {
     asideStyle : {
@@ -24,6 +28,22 @@ const SideNav = () => {
       fontSize : '14px', 
     }
   }
+  const liStyles = (x) =>{
+    if(x){
+      return {
+        backgroundColor : 'rgba(0, 156, 190, 0.352)' ,
+        color : 'rgb(3, 83, 83)'
+      }
+     
+    }
+    else {
+      return {
+        backgroundColor : 'white',
+        color : 'black'
+      }
+    }
+  }
+  
   const clickUsers = () =>{
     setClick(false)
   }
@@ -35,10 +55,14 @@ const SideNav = () => {
       <button style={styles.buttonStyle}>UnSplash</button>
       <p style={styles.pStyling}>MENU</p>
       <ul style={styles.ul_container}>
-        <li style={{backgroundColor : `${click ? 'rgba(0, 156, 190, 0.352)' : 'white'}` , color : `${click ? 'rgb(3, 83, 83)' : 'black'}`}}><Link onClick={clickHome}  to={'/'}>Home</Link></li>
-        <li><Link onClick={clickUsers} to={'/users'}>Users</Link></li>
-        <li><Link to={'/collections'}>Collections</Link></li>
-        <li><Link to={'/random'}>Random</Link></li>
+        <li style={liStyles(homeClicked)}><Link onClick={()=>clickedNav(setHomeClicked , setUserClicked , setCollectionsClicked, setRandomClicked )}  
+        to={'/'}>Home</Link></li>
+        <li style={liStyles(usersClicked)}><Link onClick={()=>clickedNav( setUserClicked ,setHomeClicked , setCollectionsClicked, setRandomClicked )} 
+        to={'/users'}>Users</Link></li>
+        <li style={liStyles(collectionsClicked)}><Link onClick={()=>clickedNav(  setCollectionsClicked , setUserClicked ,setHomeClicked, setRandomClicked )} 
+        to={'/collections'}>Collections</Link></li>
+        <li style={liStyles(randomClicked)}><Link onClick={()=>clickedNav(  setRandomClicked , setUserClicked ,setHomeClicked,setCollectionsClicked  )} 
+        to={'/random'}>Random</Link></li>
       </ul>
     </aside>
   )

@@ -6,7 +6,7 @@ const Collection = () => {
     const response = await axios.get('https')
   }
   return (
-    <div>Collection</div>
+    <div className='pages'>Collection</div>
   )
 }
 
