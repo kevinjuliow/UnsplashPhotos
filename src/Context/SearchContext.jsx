@@ -26,9 +26,10 @@ export const ContextProvider = (props) =>{
     setFalse1(false)
     setFalse2(false)
     setFalse3(false)
+    setIsSearch(false)
   }
   const startApi = () =>{
-    // searchApi()
+    searchApi()
     setIsSearch(true)
   }
   const handleText =(e)=>{

@@ -7,4 +7,16 @@ height: 100vh;
 .grid-container { 
   margin: 20px;
   margin-top: 50px;
+  position: relative;
+}
+
+
+/*===========User Images==========*/
+.user-image {
+  display : flex; 
+  align-items : center ; 
+  transform :translate(0 ,  -100%) ;
+  background: linear-gradient(rgba(0, 0, 0, 0.173) ,black) ;
+  padding-left :5px ; 
+  position: relative;
 }

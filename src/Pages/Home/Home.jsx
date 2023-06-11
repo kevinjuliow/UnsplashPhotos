@@ -8,30 +8,32 @@ import { SearchContext } from '../../Context/SearchContext'
 const Home = () => {
   const {isSearch , startApi , searchPhotos} = useContext(SearchContext);
   const [defaultPhotos , setDefaultPhotos] = useState([])
+  const [sponsor , setSponsor ] = useState([]); 
   const fetchDefaultPhotos = async () =>{
     const response = await axios.get('https://api.unsplash.com/photos/?client_id=cbcE4BHkUayOSBaspLsLOTte_DGYVyanMXS5nXF2NfM')
     .then((response) =>(
       setDefaultPhotos(response.data)
-    ) )
+    ) 
+  )
   }
 
   useEffect(()=>{
-  //  fetchDefaultPhotos()
+   fetchDefaultPhotos()
   } , [])
   return (
     <div className = 'pages home'>
-      <h1 style={{marginLeft :'50px'}}>Unsplash</h1>
+      <h1 style={{marginLeft :'50px'}}>PhotoPicker</h1>
       <p style={{color: 'gray', marginLeft : '50px'}}>All Photos here are from Unsplash</p>
       
     <div className='grid-container'>
         <ResponsiveMasonry
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3 , 1000 : 4}} 
             >
                 <Masonry gutter='10px'> 
                   {isSearch ? searchPhotos.map((e)=>{
                     return <HomeImages data = {e}/>}) :
                     defaultPhotos.map((e)=>{
-                      return <HomeImages data = {e}/>  
+                      return <HomeImages data = {e} />  
                     })}
                 </Masonry>
             </ResponsiveMasonry>

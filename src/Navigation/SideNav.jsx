@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navigations.css'
 import { SearchContext } from '../Context/SearchContext'
+import { useMediaQuery } from 'react-responsive'
 
 const SideNav = () => {
   const { clickedVar } = useContext(SearchContext);
@@ -52,7 +53,7 @@ const SideNav = () => {
   }
   return (
     <aside style={styles.asideStyle}>
-      <button style={styles.buttonStyle}>UnSplash</button>
+      <button style={styles.buttonStyle}>PhotoPicker</button>
       <p style={styles.pStyling}>MENU</p>
       <ul style={styles.ul_container}>
         <li style={liStyles(homeClicked)}><Link onClick={()=>clickedNav(setHomeClicked , setUserClicked , setCollectionsClicked, setRandomClicked )}  
