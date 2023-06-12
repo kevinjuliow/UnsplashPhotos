@@ -4,6 +4,7 @@ import axios from 'axios'
 import Masonry , {ResponsiveMasonry} from 'react-responsive-masonry'
 import HomeImages from './HomeImages'
 import { SearchContext } from '../../Context/SearchContext'
+import { useMediaQuery } from 'react-responsive'
 
 const Home = () => {
   const {isSearch , startApi , searchPhotos} = useContext(SearchContext);
@@ -20,14 +21,17 @@ const Home = () => {
   useEffect(()=>{
    fetchDefaultPhotos()
   } , [])
+  const isMobile = useMediaQuery({ query: '(max-width: 780px)' }) 
+  const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
+
   return (
-    <div className = 'pages home'>
+    <div className = 'pages home' style={{marginLeft : `${isMobile2? '0px' :isMobile ? '200px':'340px'}`}}>
       <h1 style={{marginLeft :'50px'}}>PhotoPicker</h1>
       <p style={{color: 'gray', marginLeft : '50px'}}>All Photos here are from Unsplash</p>
       
-    <div className='grid-container'>
+    <div className='grid-container' style={{margin : `${isMobile2 ? '20px 10px' : '20px'}` }}>
         <ResponsiveMasonry
-                columnsCountBreakPoints={{350: 1, 750: 2, 900: 3 , 1000 : 4}} 
+                columnsCountBreakPoints={{ 300 : 1 , 500: 2, 1050: 3 , 1200 : 4}} 
             >
                 <Masonry gutter='10px'> 
                   {isSearch ? searchPhotos.map((e)=>{

@@ -5,21 +5,28 @@ import { SearchContext } from '../Context/SearchContext'
 import { useMediaQuery } from 'react-responsive'
 
 const SideNav = () => {
-  const { clickedVar } = useContext(SearchContext);
+  const { clickedVar  , hambMenu} = useContext(SearchContext);
   const {homeClicked , setHomeClicked , usersClicked , setUserClicked , collectionsClicked , setCollectionsClicked , 
     randomClicked , setRandomClicked , clickedNav} = clickedVar
   const [click , setClick] = useState(true);
+  const isTablet = useMediaQuery({ query: '(max-width: 1200px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 780px)' })
+  const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
   const styles = {
     asideStyle : {
+      backgroundColor :"white",
+      zIndex : '10',
       position :'fixed' , 
-      width : '340px',      height : '100%',
-      display : 'flex',
-      alignItems :'center',       flexDirection : 'column',      paddingTop : '40px',      borderRight : '1px solid black'
+      width :  isMobile2? '89%' :isMobile ? '200px' : isTablet? '300px':'320px',      
+      height : '100%',
+      display : isMobile2 ? 'none' : 'flex',
+      alignItems :'center',       flexDirection : 'column',  paddingTop : '40px',      borderRight : '1px solid lightgray'
     },
     buttonStyle : {
-      padding : '9px 70px', border : 'none',  
+      padding : isMobile ? '9px 45px' : '9px 70px', 
+      border : 'none',  
       backgroundColor : 'rgb(73, 154, 153)' , fontSize : '18px',color :'white',
-      borderRadius : '100px', marginBottom : '30px'
+      borderRadius : isMobile? '5px': '100px', marginBottom : '30px'
     },pStyling : {
       fontWeight : 'bold',     
       marginBottom : '10px',      fontSize : '16px'
@@ -50,6 +57,9 @@ const SideNav = () => {
   }
   const clickHome = () =>{
     setClick(true)
+  }
+  if (hambMenu) {
+    styles.asideStyle.display = 'flex';
   }
   return (
     <aside style={styles.asideStyle}>

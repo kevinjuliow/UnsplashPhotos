@@ -14,3 +14,19 @@ li {
   color : 'black';
   transition: .4s;
 }
+
+aside {
+  transition: .2s;
+  animation-name: asideAnimation;
+}
+
+@keyframes asideAnimation {
+  0%{
+    opacity: 0;
+    width: 0%;
+  }
+  100%{
+    opacity: 1;
+    width: 100%;
+  }
+}

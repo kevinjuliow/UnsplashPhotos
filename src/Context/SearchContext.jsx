@@ -12,6 +12,7 @@ export const ContextProvider = (props) =>{
   const [usersClicked , setUserClicked] = useState(false)
   const [collectionsClicked , setCollectionsClicked] = useState(false)
   const [randomClicked , setRandomClicked] = useState(false)
+  const [hambMenu , setHambMenu ] = useState(false);
 
   const searchApi = async () =>{
     const response = await axios.get(`https://api.unsplash.com/search/photos?page=1&query=${query}` , {
@@ -35,11 +36,14 @@ export const ContextProvider = (props) =>{
   const handleText =(e)=>{
     setQuery(e.target.value);
   }
+  const handleHambMenu = () =>{
+    setHambMenu(!hambMenu)
+  }
 
   const clickedVar = {homeClicked , setHomeClicked , usersClicked , setUserClicked , collectionsClicked , setCollectionsClicked , 
   randomClicked , setRandomClicked , clickedNav}
 
-  const value = {query , isSearch , setIsSearch , handleText , startApi , searchPhotos , clickedVar}
+  const value = {query , isSearch , setIsSearch , handleText , startApi , searchPhotos , clickedVar , handleHambMenu , hambMenu}
   return (
     <SearchContext.Provider value={value}>
       {props.children}
