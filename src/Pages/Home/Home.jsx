@@ -21,7 +21,7 @@ const Home = () => {
   useEffect(()=>{
    fetchDefaultPhotos()
   } , [])
-  const isMobile = useMediaQuery({ query: '(max-width: 780px)' }) 
+  const isMobile = useMediaQuery({ query: '(max-width: 780px)' })   
   const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
 
   return (
