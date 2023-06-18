@@ -4,7 +4,6 @@ import {TbDownload} from 'react-icons/tb'
 
 const HomeImages = (e) => {
   const {urls , user , links} = e.data
-  console.log(e);
   return (
     <>
     <img src={urls.small} />

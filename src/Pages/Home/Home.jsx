@@ -11,7 +11,7 @@ const Home = () => {
   const [defaultPhotos , setDefaultPhotos] = useState([])
   const [sponsor , setSponsor ] = useState([]); 
   const fetchDefaultPhotos = async () =>{
-    const response = await axios.get('https://api.unsplash.com/photos/?client_id=cbcE4BHkUayOSBaspLsLOTte_DGYVyanMXS5nXF2NfM')
+    const response = await axios.get('https://api.unsplash.com/photos/?client_id=CM-ro_y-f_t3u3zhpjbu5nU2_8ITnQHmTzauX-_V9kc')
     .then((response) =>(
       setDefaultPhotos(response.data)
     ) 
@@ -19,7 +19,7 @@ const Home = () => {
   }
 
   useEffect(()=>{
-   fetchDefaultPhotos()
+  //  fetchDefaultPhotos()
   } , [])
   const isMobile = useMediaQuery({ query: '(max-width: 780px)' })   
   const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
