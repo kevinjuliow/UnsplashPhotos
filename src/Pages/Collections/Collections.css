@@ -1,11 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo&display=swap');
 .grid-collections{
   display: grid;
-  
+  grid-template-columns: repeat(auto-fit, minmax(360px, 410px));
   column-gap: 10px;
 }
 
 .collectionsCard {
-  border: 1px solid black;
-  width: 400px;
+  width: 410px;
   height: 400px;
+}
+
+.collectionsCard img {
+  border-radius: 7px;
+}
+.collectionsTitle{
+  margin-top: 5px;
+  font-family: 'Aleo', serif;
+  font-size: 18px;
+}
+.tags{
+  font-family: 'Aleo', serif;
+  letter-spacing: .5px;
+  background-color: silver;
+  display: inline-block;
+  margin: 10px;
+  padding : 4px;
+  font-weight: 500;
 }
