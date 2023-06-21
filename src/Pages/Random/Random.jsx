@@ -22,7 +22,7 @@ const Random = () => {
   }
   useEffect(()=>{
     if (randomClicked) {
-      // fetchRandom()
+      fetchRandom()
     }
   } , [] )
   const isMobile = useMediaQuery({ query: '(max-width: 780px)' }) 

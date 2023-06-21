@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Aleo&display=swap');
 .grid-collections{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 410px));
+  display: grid; 
   column-gap: 10px;
+  grid-template-columns: minmax(1fr , 410px)
 }
 
 .collectionsCard {
-  width: 410px;
   height: 400px;
 }
 
