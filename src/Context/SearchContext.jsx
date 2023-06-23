@@ -25,7 +25,7 @@ export const ContextProvider = (props) =>{
   }
   const fetchSearchCollections = async () =>{
     try {
-      const response = await axios.get('https://api.unsplash.com/search/collections?client_id=CM-ro_y-f_t3u3zhpjbu5nU2_8ITnQHmTzauX-_V9kc&query='+query)
+      const response = await axios.get(`https://api.unsplash.com/search/collections?client_id=CM-ro_y-f_t3u3zhpjbu5nU2_8ITnQHmTzauX-_V9kc&query=${query}`)
       setSearchCollections(response.data)
       console.log(searchCollections)
     }

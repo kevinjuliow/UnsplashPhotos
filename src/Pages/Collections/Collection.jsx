@@ -31,7 +31,7 @@ const Collection = () => {
       fetchCollections()
     } , [])
 
-
+    if (collectionsClicked && isSearch){fetchSearchCollections()}
   return (
     <div className='pages colletions' style={{marginLeft : `${isMobile2? '0px' :isMobile ? '200px':'340px'}`}}>
       <div className='grid-collections' style={{margin : `${isMobile2 ? '20px 10px' : '20px'}` }}>
