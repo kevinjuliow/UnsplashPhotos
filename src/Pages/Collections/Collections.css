@@ -6,10 +6,12 @@
 }
 
 .collectionsCard {
+
   height: 400px;
 }
 
 .collectionsCard img {
+  cursor: pointer;
   border-radius: 7px;
 }
 .collectionsTitle{

@@ -2,16 +2,22 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import CollectionsCard from './CollectionsCard';
 import './Collections.css'
-import { useMediaQuery } from 'react-responsive';
 import { ResponsiveMasonry } from 'react-responsive-masonry';
 import Masonry from 'react-responsive-masonry';
 import { SearchContext } from '../../Context/SearchContext';
+import CollectionsSearchPhotos from './CollectionsSearchPhotos';
+import { useMediaQuery } from 'react-responsive';
+
 
 const Collection = () => {
   const [collections , setCollections] = useState([]);
-  const [searchCollections , setSearchCollections] = useState([])
   const [isFetch , setIsFetch] = useState(false);
-  const {query} = useContext(SearchContext);
+  const {query , isSearch , searchCollections , collectionsClicked , fetchSearchCollections} = useContext(SearchContext);
+
+
+  const isMobile = useMediaQuery({ query: '(max-width: 780px)' })   
+  const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
+
   const fetchCollections = async () =>{
     try { 
       const response = await axios.get('https://api.unsplash.com/collections?client_id=CM-ro_y-f_t3u3zhpjbu5nU2_8ITnQHmTzauX-_V9kc')
@@ -21,23 +27,10 @@ const Collection = () => {
       console.error("Error fetching")
     }
   }
+    useEffect((e)=>{
+      fetchCollections()
+    } , [])
 
-  const fetchSearchCollections = async () =>{
-    try {
-      const response = await axios.get('https://api.unsplash.com/search/collections?client_id=CM-ro_y-f_t3u3zhpjbu5nU2_8ITnQHmTzauX-_V9kc&query='+query)
-      setSearchCollections(response.data)
-      console.log(searchCollections)
-    }
-    catch(error){
-      console.error("Error Fetching Collections");
-    }
-  }
-
-  useEffect((e)=>{
-    fetchCollections()
-  } , [])
-  const isMobile = useMediaQuery({ query: '(max-width: 780px)' })   
-  const isMobile2 = useMediaQuery({ query: '(max-width: 612px)' })
 
   return (
     <div className='pages colletions' style={{marginLeft : `${isMobile2? '0px' :isMobile ? '200px':'340px'}`}}>
@@ -46,9 +39,15 @@ const Collection = () => {
                 columnsCountBreakPoints={{ 300 : 1 , 1000: 2, 1200: 3}} 
             >
                 <Masonry gutter='20px'> 
-                {collections.map((e)=>{
-        return(
-          <CollectionsCard data = {e} />
+                { (isSearch && collectionsClicked)? 
+                searchCollections.map((e)=>{
+                  return (
+                    <CollectionsSearchPhotos data = {e} />
+                  )
+                })
+                :collections.map((e)=>{
+                 return(
+                <CollectionsCard data = {e} />
         )
       })}
                 </Masonry>
